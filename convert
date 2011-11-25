@@ -4,4 +4,4 @@ TMP_VIDEO_FILE = video.mp4
 
 mencoder $1 -o TMP_VIDEO_FILE -ovc xvid -nosound -vf yadif,scale=656:370 -xvidencopts bitrate=1000:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:max_bframes=1:threads=4
 
-ffmpeg -i TMP_VIDEO_FILE -i Countryfile_-_20_11_2011_b017pjcp_default.mp4 -map 0:0 -map 1:1 -vcodec copy -acodec copy test.mp4
+ffmpeg -i TMP_VIDEO_FILE -i Countryfile_-_20_11_2011_b017pjcp_default.mp4 -map 0:0 -map 1:1 -vcodec copy -acodec copy $2
