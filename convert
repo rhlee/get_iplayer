@@ -2,7 +2,7 @@
 
 TMP_VIDEO_FILE=video.mp4
 MENCODER_OPTS='-nosound -ovc xvid -vf yadif,scale=656:370 -xvidencopts bitrate=1000:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:max_bframes=1:threads=4'
-OUTPUT_FILE=$(echo $1 | sed 's/_/ /g')
+OUTPUT_FILE=$(echo $1 | sed 's/_/ /g' | sed 's/ [^ ]\{8\} default.mp4$/.mp4/')
 
 mencoder $1 -o /dev/null $MENCODER_OPTS:pass=1
 
