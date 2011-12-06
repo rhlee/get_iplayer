@@ -2,9 +2,10 @@
 
 TMP_VIDEO_FILE=video.mp4
 MENCODER_OPTS='-nosound -ovc xvid -vf yadif,scale=656:370 -xvidencopts bitrate=1000:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:max_bframes=1:threads=4'
+OUTPUT_FILE=$(echo $1 | sed 's/_/ /g')
 
 mencoder $1 -o /dev/null $MENCODER_OPTS:pass=1
 
-echo mencoder $1 -o $TMP_VIDEO_FILE $MENCODER_OPTS:pass=2
+mencoder $1 -o $TMP_VIDEO_FILE $MENCODER_OPTS:pass=2
 
-ffmpeg -i $TMP_VIDEO_FILE -i $1 -map 0:0 -map 1:1 -vcodec copy -acodec copy $2
+ffmpeg -i $TMP_VIDEO_FILE -i $1 -map 0:0 -map 1:1 -vcodec copy -acodec copy \"$OUTPUT_FILE\"
