@@ -5,7 +5,8 @@ set -e
 INPUT_DIR=raw
 OUTPUT_DIR=converted
 TMP_VIDEO_FILE=/tmp/video.mp4
-MENCODER_OPTS='-nosound -ovc xvid -vf yadif,scale=656:370 -xvidencopts bitrate=1000:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:max_bframes=1:threads=4'
+RESOLUTION=656:370
+MENCODER_OPTS="-nosound -ovc xvid -vf yadif,scale=$RESOLUTION -xvidencopts bitrate=1000:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:max_bframes=1:threads=4"
 OUTPUT_FILE=${OUTPUT_DIR}/$(echo $(basename $1) | sed 's/_/ /g' | sed 's/ [^ ]\{8\} default.mp4$/.mp4/')
 
 if [ ! -d 'converted' ]; then mkdir converted; fi
